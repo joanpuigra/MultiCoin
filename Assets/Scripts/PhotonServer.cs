@@ -1,12 +1,11 @@
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 
 public class PhotonServer : MonoBehaviourPunCallbacks
 {
-    public GameObject playerGirlPrefab;
-    public GameObject playerBoyPrefab;
-    public Transform playerSpawn;
+    public GameObject playerPrefab;
 
     public TextMeshProUGUI greenDText;
     public TextMeshProUGUI redDText;
@@ -18,28 +17,56 @@ public class PhotonServer : MonoBehaviourPunCallbacks
 
     private static void ConnectToServer()
     {
-        Debug.Log("Connecting to server...");
         PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to server");
-        PhotonNetwork.JoinRoom("DefaultRoom");
+        PhotonNetwork.JoinOrCreateRoom(
+            "DefaultRoom",
+            new RoomOptions { MaxPlayers = 2 },
+            TypedLobby.Default
+        );
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        Debug.LogWarning("Failed to join room: " + message);
+        PhotonNetwork.CreateRoom(
+            "DefaultRoom",
+            new RoomOptions { MaxPlayers = 2 },
+            TypedLobby.Default
+        );
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined room");
-        // InstantiatePlayer();
+        InstantiatePlayer();
     }
 
     private void InstantiatePlayer()
     {
-        var playerGirl = PhotonNetwork.Instantiate(
-            "PlayerGirl",
-            playerGirlPrefab.transform.position,
-            playerGirlPrefab.transform.rotation
-        );
+        if (playerPrefab is not null)
+        {
+            var player = PhotonNetwork.Instantiate(
+                playerPrefab.name,
+                playerPrefab.transform.position,
+                playerPrefab.transform.rotation
+            );
+
+        }
+        else if (playerPrefab)
+        {
+            playerPrefab = Resources.Load<GameObject>("PlayerBoy");
+
+            var player = PhotonNetwork.Instantiate(
+                playerPrefab.name,
+                playerPrefab.transform.position,
+                playerPrefab.transform.rotation
+            );
+        }
+        else { Debug.LogWarning("Player prefab is not set"); }
     }
 }
