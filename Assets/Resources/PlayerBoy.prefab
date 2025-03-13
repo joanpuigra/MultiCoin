@@ -14,10 +14,11 @@ GameObject:
   - component: {fileID: -1416337351225896539}
   - component: {fileID: -7271402639115391349}
   - component: {fileID: 4342644420655046465}
+  - component: {fileID: -5494532019942091976}
   - component: {fileID: -2568248416077555530}
   m_Layer: 0
   m_Name: PlayerBoy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,13 +125,13 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7823490070542273098}
   m_BodyType: 0
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -210,6 +211,21 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerBoy
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &-5494532019942091976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823490070542273098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb02092825218848a0f9c187f7d1d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputX: 0
+  inputY: 0
+  speed: 5
 --- !u!114 &-2568248416077555530
 MonoBehaviour:
   m_ObjectHideFlags: 0

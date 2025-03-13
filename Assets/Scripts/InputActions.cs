@@ -27,7 +27,7 @@ public class InputActions : MonoBehaviour
       inputX = _inputSystem.PlayerGirl.Move.ReadValue<Vector2>().x;
       inputY = _inputSystem.PlayerGirl.Move.ReadValue<Vector2>().y;
 
-      Debug.Log($"X: {inputX}, Y: {inputY}");
+      // Debug.Log($"X: {inputX}, Y: {inputY}");
 
       // Move player
       var movement = new Vector2(inputX, inputY) * (speed * Time.deltaTime);
@@ -37,5 +37,20 @@ public class InputActions : MonoBehaviour
       // _animator.SetFloat("Speed", movement.magnitude);
       _animator.SetFloat("InputX", inputX);
       _animator.SetFloat("InputY", inputY);
+   }
+
+   private void OnGUI()
+   {
+      GUIStyle guiStyle = new()
+      {
+         fontSize = 50,
+         fontStyle = FontStyle.Bold,
+         padding = new RectOffset(5, 5, 5, 5),
+         alignment = TextAnchor.LowerCenter,
+      };
+
+      guiStyle.normal.textColor = Color.white;
+
+      GUI.Label(new Rect(20, 20,350, 300), $"X: {inputX}, Y: {inputY}", guiStyle);
    }
 }
