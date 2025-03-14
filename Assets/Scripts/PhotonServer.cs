@@ -5,17 +5,24 @@ using TMPro;
 
 public class PhotonServer : MonoBehaviourPunCallbacks
 {
-    public GameObject playerPrefab;
+    [Header("Prefabs")]
+    [SerializeField]
+    private GameObject playerPrefab;
 
-    public TextMeshProUGUI greenDText;
-    public TextMeshProUGUI redDText;
+    [SerializeField]
+    private GameObject gemGreenPrefab;
+    [SerializeField]
+    private GameObject gemRedPrefab;
+
+    [Header("UI")]
+    [SerializeField]
+    private TextMeshProUGUI greenDText;
+    [SerializeField]
+    private TextMeshProUGUI redDText;
+
+    private GemBehavior _gemBehavior;
 
     private void Start()
-    {
-        ConnectToServer();
-    }
-
-    private static void ConnectToServer()
     {
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -44,29 +51,45 @@ public class PhotonServer : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined room");
         InstantiatePlayer();
+        // _gemBehavior.InstantiateGem();
     }
 
-    private void InstantiatePlayer()
+    // private void Update()
+    // {
+    //     if (!photonView.IsMine)
+    //     {
+    //         transform.position = playerGirl.transform.position;
+    //         transform.rotation = playerGirl.transform.rotation;
+    //     }
+    // }
+
+    private static void InstantiatePlayer()
     {
-        if (playerPrefab is not null)
-        {
-            var player = PhotonNetwork.Instantiate(
-                playerPrefab.name,
-                playerPrefab.transform.position,
-                playerPrefab.transform.rotation
-            );
+        if (!PhotonNetwork.IsConnected) return;
+        var prefabName = PhotonNetwork.PlayerList.Length == 1 ? "PlayerGirl" : "PlayerBoy";
+        var prefabToSpawn = Resources.Load<GameObject>(prefabName);
 
-        }
-        else if (playerPrefab)
+        if (prefabToSpawn is not null)
         {
-            playerPrefab = Resources.Load<GameObject>("PlayerBoy");
-
-            var player = PhotonNetwork.Instantiate(
-                playerPrefab.name,
-                playerPrefab.transform.position,
-                playerPrefab.transform.rotation
+            PhotonNetwork.Instantiate(
+                prefabToSpawn.name,
+                prefabToSpawn.transform.position,
+                prefabToSpawn.transform.rotation
             );
         }
-        else { Debug.LogWarning("Player prefab is not set"); }
+        else { Debug.LogWarning($"Prefab {prefabName} not found in Resources"); }
     }
+
+    // private void InstantiateGem()
+    // {
+    //     if (gemGreenPrefab is not null && PhotonNetwork.IsConnected)
+    //     {
+    //         var gem = PhotonNetwork.Instantiate(
+    //             gemGreenPrefab.name,
+    //             gemGreenPrefab.transform.position,
+    //             gemGreenPrefab.transform.rotation
+    //         );
+    //     }
+    //     else { Debug.LogWarning("Gem prefab is not set"); }
+    // }
 }

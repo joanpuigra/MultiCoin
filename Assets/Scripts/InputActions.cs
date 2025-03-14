@@ -1,6 +1,7 @@
+using Photon.Pun;
 using UnityEngine;
 
-public class InputActions : MonoBehaviour
+public class InputActions : MonoBehaviourPunCallbacks
 {
    private InputSystem _inputSystem;
    private Animator _animator;
@@ -19,23 +20,36 @@ public class InputActions : MonoBehaviour
       _animator = GetComponent<Animator>();
    }
 
-   private void OnEnable() { _inputSystem.Enable(); }
-   private void OnDisable() { _inputSystem.Disable(); }
+   public override void OnEnable() { _inputSystem.Enable(); }
+   public override void OnDisable() { _inputSystem.Disable(); }
 
    private void Update()
    {
-      inputX = _inputSystem.PlayerGirl.Move.ReadValue<Vector2>().x;
-      inputY = _inputSystem.PlayerGirl.Move.ReadValue<Vector2>().y;
+      if (!photonView.IsMine) return;
 
-      Debug.Log($"X: {inputX}, Y: {inputY}");
+      inputX = _inputSystem.Player.Move.ReadValue<Vector2>().x;
+      inputY = _inputSystem.Player.Move.ReadValue<Vector2>().y;
 
       // Move player
       var movement = new Vector2(inputX, inputY) * (speed * Time.deltaTime);
       transform.Translate(movement, Space.World);
 
       // Update animations
-      // _animator.SetFloat("Speed", movement.magnitude);
-      _animator.SetFloat("InputX", inputX);
-      _animator.SetFloat("InputY", inputY);
+      _animator.SetFloat("inputX", inputX);
+      _animator.SetFloat("inputY", inputY);
+   }
+
+   private void OnGUI()
+   {
+      GUIStyle guiStyle = new()
+      {
+         fontSize = 50,
+         fontStyle = FontStyle.Bold,
+         padding = new RectOffset(5, 5, 5, 5),
+         alignment = TextAnchor.LowerCenter,
+         normal = { textColor = Color.white }
+      };
+
+      GUI.Label(new Rect(20, 20,350, 300), $"X: {inputX}, Y: {inputY}", guiStyle);
    }
 }

@@ -88,7 +88,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     ""name"": ""InputSystem"",
     ""maps"": [
         {
-            ""name"": ""PlayerGirl"",
+            ""name"": ""Player"",
             ""id"": ""8b2be39e-7baf-4e49-b40f-e3c628864c98"",
             ""actions"": [
                 {
@@ -156,82 +156,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                }
-            ]
-        },
-        {
-            ""name"": ""PlayerBoy"",
-            ""id"": ""926cca1d-1b4e-4004-ac70-a020b8845c89"",
-            ""actions"": [
-                {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""4815b58a-0896-4653-9172-6f7bdb80cb27"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""IJKL"",
-                    ""id"": ""41c4ffbc-aa7d-433e-aa77-11853f829655"",
-                    ""path"": ""Dpad"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""32055251-6763-455e-acd9-a696a7d823c9"",
-                    ""path"": ""<Keyboard>/i"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""da09f935-3670-4de7-ae9e-199b422ad14e"",
-                    ""path"": ""<Keyboard>/k"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""583bb44e-c6c7-4cb3-ab78-2b98108a6573"",
-                    ""path"": ""<Keyboard>/j"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""02a04435-a87c-46f2-9080-fc767f3a307c"",
-                    ""path"": ""<Keyboard>/l"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
-                    ""id"": ""de975165-94cd-4bf5-95b9-a372024b9a39"",
+                    ""id"": ""0b401ba8-5588-46a8-8678-3129ba13d2fd"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -268,18 +196,14 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // PlayerGirl
-        m_PlayerGirl = asset.FindActionMap("PlayerGirl", throwIfNotFound: true);
-        m_PlayerGirl_Move = m_PlayerGirl.FindAction("Move", throwIfNotFound: true);
-        // PlayerBoy
-        m_PlayerBoy = asset.FindActionMap("PlayerBoy", throwIfNotFound: true);
-        m_PlayerBoy_Move = m_PlayerBoy.FindAction("Move", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
     }
 
     ~@InputSystem()
     {
-        UnityEngine.Debug.Assert(!m_PlayerGirl.enabled, "This will cause a leak and performance issues, InputSystem.PlayerGirl.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_PlayerBoy.enabled, "This will cause a leak and performance issues, InputSystem.PlayerBoy.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem.Player.Disable() has not been called.");
     }
 
     /// <summary>
@@ -352,29 +276,29 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // PlayerGirl
-    private readonly InputActionMap m_PlayerGirl;
-    private List<IPlayerGirlActions> m_PlayerGirlActionsCallbackInterfaces = new List<IPlayerGirlActions>();
-    private readonly InputAction m_PlayerGirl_Move;
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Move;
     /// <summary>
-    /// Provides access to input actions defined in input action map "PlayerGirl".
+    /// Provides access to input actions defined in input action map "Player".
     /// </summary>
-    public struct PlayerGirlActions
+    public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public PlayerGirlActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public PlayerActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "PlayerGirl/Move".
+        /// Provides access to the underlying input action "Player/Move".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_PlayerGirl_Move;
+        public InputAction @Move => m_Wrapper.m_Player_Move;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_PlayerGirl; }
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -382,9 +306,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="PlayerGirlActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="PlayerActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(PlayerGirlActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -392,11 +316,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="PlayerGirlActions" />
-        public void AddCallbacks(IPlayerGirlActions instance)
+        /// <seealso cref="PlayerActions" />
+        public void AddCallbacks(IPlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlayerGirlActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerGirlActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -408,8 +332,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="PlayerGirlActions" />
-        private void UnregisterCallbacks(IPlayerGirlActions instance)
+        /// <seealso cref="PlayerActions" />
+        private void UnregisterCallbacks(IPlayerActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -417,12 +341,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerGirlActions.UnregisterCallbacks(IPlayerGirlActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />.
         /// </summary>
-        /// <seealso cref="PlayerGirlActions.UnregisterCallbacks(IPlayerGirlActions)" />
-        public void RemoveCallbacks(IPlayerGirlActions instance)
+        /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
+        public void RemoveCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_PlayerGirlActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -432,117 +356,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="PlayerGirlActions.AddCallbacks(IPlayerGirlActions)" />
-        /// <seealso cref="PlayerGirlActions.RemoveCallbacks(IPlayerGirlActions)" />
-        /// <seealso cref="PlayerGirlActions.UnregisterCallbacks(IPlayerGirlActions)" />
-        public void SetCallbacks(IPlayerGirlActions instance)
+        /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
+        /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
+        /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
+        public void SetCallbacks(IPlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlayerGirlActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerGirlActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="PlayerGirlActions" /> instance referencing this action map.
+    /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
     /// </summary>
-    public PlayerGirlActions @PlayerGirl => new PlayerGirlActions(this);
-
-    // PlayerBoy
-    private readonly InputActionMap m_PlayerBoy;
-    private List<IPlayerBoyActions> m_PlayerBoyActionsCallbackInterfaces = new List<IPlayerBoyActions>();
-    private readonly InputAction m_PlayerBoy_Move;
-    /// <summary>
-    /// Provides access to input actions defined in input action map "PlayerBoy".
-    /// </summary>
-    public struct PlayerBoyActions
-    {
-        private @InputSystem m_Wrapper;
-
-        /// <summary>
-        /// Construct a new instance of the input action map wrapper class.
-        /// </summary>
-        public PlayerBoyActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        /// <summary>
-        /// Provides access to the underlying input action "PlayerBoy/Move".
-        /// </summary>
-        public InputAction @Move => m_Wrapper.m_PlayerBoy_Move;
-        /// <summary>
-        /// Provides access to the underlying input action map instance.
-        /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_PlayerBoy; }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
-        public void Enable() { Get().Enable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
-        public void Disable() { Get().Disable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
-        public bool enabled => Get().enabled;
-        /// <summary>
-        /// Implicitly converts an <see ref="PlayerBoyActions" /> to an <see ref="InputActionMap" /> instance.
-        /// </summary>
-        public static implicit operator InputActionMap(PlayerBoyActions set) { return set.Get(); }
-        /// <summary>
-        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <param name="instance">Callback instance.</param>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
-        /// </remarks>
-        /// <seealso cref="PlayerBoyActions" />
-        public void AddCallbacks(IPlayerBoyActions instance)
-        {
-            if (instance == null || m_Wrapper.m_PlayerBoyActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerBoyActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
-        }
-
-        /// <summary>
-        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <remarks>
-        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
-        /// </remarks>
-        /// <seealso cref="PlayerBoyActions" />
-        private void UnregisterCallbacks(IPlayerBoyActions instance)
-        {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
-        }
-
-        /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerBoyActions.UnregisterCallbacks(IPlayerBoyActions)" />.
-        /// </summary>
-        /// <seealso cref="PlayerBoyActions.UnregisterCallbacks(IPlayerBoyActions)" />
-        public void RemoveCallbacks(IPlayerBoyActions instance)
-        {
-            if (m_Wrapper.m_PlayerBoyActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        /// <summary>
-        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
-        /// </summary>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
-        /// </remarks>
-        /// <seealso cref="PlayerBoyActions.AddCallbacks(IPlayerBoyActions)" />
-        /// <seealso cref="PlayerBoyActions.RemoveCallbacks(IPlayerBoyActions)" />
-        /// <seealso cref="PlayerBoyActions.UnregisterCallbacks(IPlayerBoyActions)" />
-        public void SetCallbacks(IPlayerBoyActions instance)
-        {
-            foreach (var item in m_Wrapper.m_PlayerBoyActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerBoyActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    /// <summary>
-    /// Provides a new <see cref="PlayerBoyActions" /> instance referencing this action map.
-    /// </summary>
-    public PlayerBoyActions @PlayerBoy => new PlayerBoyActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
     private int m_KeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -570,26 +398,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerGirl" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="PlayerGirlActions.AddCallbacks(IPlayerGirlActions)" />
-    /// <seealso cref="PlayerGirlActions.RemoveCallbacks(IPlayerGirlActions)" />
-    public interface IPlayerGirlActions
-    {
-        /// <summary>
-        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMove(InputAction.CallbackContext context);
-    }
-    /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerBoy" which allows adding and removing callbacks.
-    /// </summary>
-    /// <seealso cref="PlayerBoyActions.AddCallbacks(IPlayerBoyActions)" />
-    /// <seealso cref="PlayerBoyActions.RemoveCallbacks(IPlayerBoyActions)" />
-    public interface IPlayerBoyActions
+    /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
+    /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
+    public interface IPlayerActions
     {
         /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
