@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -9,6 +8,7 @@ public class PhotonServer : MonoBehaviourPunCallbacks
     [Header("Prefabs")]
     [SerializeField]
     private GameObject playerPrefab;
+
     [SerializeField]
     private GameObject gemGreenPrefab;
     [SerializeField]
@@ -22,17 +22,7 @@ public class PhotonServer : MonoBehaviourPunCallbacks
 
     private GemBehavior _gemBehavior;
 
-    private void Awake()
-    {
-        _gemBehavior = gameObject.GetComponent<GemBehavior>();
-    }
-
     private void Start()
-    {
-        ConnectToServer();
-    }
-
-    private static void ConnectToServer()
     {
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -61,29 +51,33 @@ public class PhotonServer : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined room");
         InstantiatePlayer();
-        _gemBehavior.InstantiateGem();
+        // _gemBehavior.InstantiateGem();
     }
 
     // private void Update()
     // {
     //     if (!photonView.IsMine)
     //     {
-    //         transform.position = playerPrefab.transform.position;
-    //         transform.rotation = playerPrefab.transform.rotation;
+    //         transform.position = playerGirl.transform.position;
+    //         transform.rotation = playerGirl.transform.rotation;
     //     }
     // }
 
-    private void InstantiatePlayer()
+    private static void InstantiatePlayer()
     {
-        if (playerPrefab is not null && PhotonNetwork.IsConnected)
+        if (!PhotonNetwork.IsConnected) return;
+        var prefabName = PhotonNetwork.PlayerList.Length == 1 ? "PlayerGirl" : "PlayerBoy";
+        var prefabToSpawn = Resources.Load<GameObject>(prefabName);
+
+        if (prefabToSpawn is not null)
         {
-            var player = PhotonNetwork.Instantiate(
-                playerPrefab.name,
-                playerPrefab.transform.position,
-                playerPrefab.transform.rotation
+            PhotonNetwork.Instantiate(
+                prefabToSpawn.name,
+                prefabToSpawn.transform.position,
+                prefabToSpawn.transform.rotation
             );
         }
-        else { Debug.LogWarning("Player prefab is not set"); }
+        else { Debug.LogWarning($"Prefab {prefabName} not found in Resources"); }
     }
 
     // private void InstantiateGem()

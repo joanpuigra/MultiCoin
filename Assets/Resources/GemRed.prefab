@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 604423355265307636}
   - component: {fileID: 5558980613671651726}
   - component: {fileID: 4999480858963461233}
-  - component: {fileID: -2922032911165388758}
   - component: {fileID: 6475582238384293747}
   m_Layer: 0
   m_Name: GemRed
@@ -140,20 +139,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &-2922032911165388758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9209103165987800630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d962154a4493a46b5bce68566f9148, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gemGreenText: {fileID: 0}
-  gemRedText: {fileID: 0}
 --- !u!114 &6475582238384293747
 MonoBehaviour:
   m_ObjectHideFlags: 0

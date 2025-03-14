@@ -3261,9 +3261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d962154a4493a46b5bce68566f9148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gemPrefab: {fileID: 5292798486397559501, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-    type: 3}
-  gemText: {fileID: 1250773475}
 --- !u!1 &871355462
 GameObject:
   m_ObjectHideFlags: 0
@@ -4733,90 +4730,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250773475}
   m_CullTransparentMesh: 1
---- !u!1001 &1332789553
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -3807898376311997361, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: gemText
-      value: 
-      objectReference: {fileID: 1250773475}
-    - target: {fileID: -3807898376311997361, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: gemPrefab
-      value: 
-      objectReference: {fileID: 5292798486397559501, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-    - target: {fileID: -1102928977518939014, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195398631911040743, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -19.3222
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195398631911040743, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -8.7052
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195398631911040743, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195398631911040743, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195398631911040743, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195398631911040743, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195398631911040743, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195398631911040743, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195398631911040743, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195398631911040743, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5292798486397559501, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb,
-        type: 3}
-      propertyPath: m_Name
-      value: GemGreen
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4b16bd0f5a12a6040ae0aa988c59e4eb, type: 3}
 --- !u!1 &1685918530
 GameObject:
   m_ObjectHideFlags: 0
@@ -8136,4 +8049,3 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1021638903}
   - {fileID: 1829366512}
-  - {fileID: 1332789553}
