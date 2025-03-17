@@ -1,41 +1,34 @@
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 
 public class GemBehavior : MonoBehaviourPun
 {
-   private int _playerScore;
-  private void OnTriggerEnter2D(Collider2D collision)
+    private static int _playerScore;
+    private TextMeshProUGUI _textGem;
+
+    private void Start()
     {
-        Debug.Log(collision.gameObject.name);
+        _textGem = GameObject.FindWithTag("TextGem").GetComponent<TextMeshProUGUI>();
+    }
 
-        if (!collision.gameObject.CompareTag("Player")) return;
-        
+    private void OnTriggerEnter2D(Collider2D target)
+    {
+        if (!photonView.IsMine) return;
+
+        if (!target.gameObject.CompareTag("Player")) return;
+
         _playerScore++;
-        // photonView.RPC("AddScore", RpcTarget.AllBuffered, _playerScore);
+        photonView.RPC("AddScore", RpcTarget.AllBuffered, _playerScore);
+}
 
-        if (photonView.IsMine)
+    [PunRPC]
+    private void AddScore(int newScore)
+    {
+        _textGem.text = newScore.ToString();
+        if (gameObject != null)
         {
             PhotonNetwork.Destroy(gameObject);
         }
     }
-
-    // public void InstantiateGem()
-    // {
-    //     if (gemPrefab is not null && PhotonNetwork.IsConnected)
-    //     {
-    //         var gem = PhotonNetwork.Instantiate(
-    //             gemPrefab.name,
-    //             gemPrefab.transform.position,
-    //             gemPrefab.transform.rotation
-    //         );
-    //     }
-    //     else { Debug.LogWarning("Gem prefab is not set"); }
-    // }
-
-    // [PunRPC]
-    // private void AddScore(int score)
-    // {
-    //     _playerScore = score;
-    //     gemText.GetComponent<TMPro.TextMeshProUGUI>().text = _playerScore.ToString();
-    // }
 }

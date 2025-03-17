@@ -39,17 +39,17 @@ public class InputActions : MonoBehaviourPunCallbacks
       _animator.SetFloat("inputY", inputY);
    }
 
-   private void OnGUI()
-   {
-      GUIStyle guiStyle = new()
-      {
-         fontSize = 50,
-         fontStyle = FontStyle.Bold,
-         padding = new RectOffset(5, 5, 5, 5),
-         alignment = TextAnchor.LowerCenter,
-         normal = { textColor = Color.white }
-      };
-
-      GUI.Label(new Rect(20, 20,350, 300), $"X: {inputX}, Y: {inputY}", guiStyle);
-   }
+   // private void OnGUI()
+   // {
+   //    GUIStyle guiStyle = new()
+   //    {
+   //       fontSize = 50,
+   //       fontStyle = FontStyle.Bold,
+   //       padding = new RectOffset(5, 5, 5, 5),
+   //       alignment = TextAnchor.LowerCenter,
+   //       normal = { textColor = Color.white }
+   //    };
+   //
+   //    GUI.Label(new Rect(20, 20,350, 300), $"X: {inputX}, Y: {inputY}", guiStyle);
+   // }
 }

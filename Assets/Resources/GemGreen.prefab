@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 5195398631911040743}
   - component: {fileID: 6259467221462396314}
   - component: {fileID: 2086381213085626703}
+  - component: {fileID: 5113437349536147361}
   - component: {fileID: -1102928977518939014}
+  - component: {fileID: -9197765919140573017}
   m_Layer: 0
   m_Name: GemGreen
   m_TagString: Gem
@@ -139,6 +141,18 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &5113437349536147361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5292798486397559501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d962154a4493a46b5bce68566f9148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-1102928977518939014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +171,24 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -9197765919140573017}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-9197765919140573017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5292798486397559501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
